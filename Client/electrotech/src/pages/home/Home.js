@@ -23,12 +23,10 @@ const Home = () => {
 
   return (
     <LayoutApp>
-      <Grid container>
+      <Grid container spacing={3}>
         {productData.map((ele) => (
-          <Grid item xs={12} sm={6} md={3}>
-            <Paper>
-              <Product product={ele} />
-            </Paper>
+          <Grid item key={ele._id} xs={12} sm={6} md={2}>
+            <Product product={ele} />
           </Grid>
         ))}
       </Grid>

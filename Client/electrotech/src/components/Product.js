@@ -7,9 +7,20 @@ import {
   CardContent,
   CardActionArea,
   Button,
+  Container,
+  makeStyles,
 } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 
 const Product = (props) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: props.product,
+    });
+  };
   return (
     <Card>
       <CardActionArea>
@@ -24,8 +35,8 @@ const Product = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button size="small" color="primary" onClick={() => handleAddToCart()}>
+          Add to Cart
         </Button>
         <Button size="small" color="primary">
           Learn More

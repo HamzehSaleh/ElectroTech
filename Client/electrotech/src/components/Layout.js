@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -15,13 +15,15 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import LocalAtmOutlinedIcon from "@material-ui/icons/LocalAtmOutlined";
 import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
 import AppsIcon from "@material-ui/icons/Apps";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import "./layout.css";
 
 const drawerWidth = 240;
 
@@ -93,6 +95,8 @@ export default function LayoutApp({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const { cartItems } = useSelector((state) => state.rootReducer);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -100,6 +104,10 @@ export default function LayoutApp({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <div className={classes.root}>
@@ -126,6 +134,10 @@ export default function LayoutApp({ children }) {
             ElectroTech
           </Typography>
         </Toolbar>
+        <div className="cart-itmes">
+          <ShoppingCartOutlinedIcon />
+          <span className="cart-badge"> {cartItems.length}</span>
+        </div>
       </AppBar>
       <Drawer
         variant="permanent"
