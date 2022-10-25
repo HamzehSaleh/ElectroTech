@@ -17,3 +17,14 @@
   top: -10px;
   font-size: 14px;
 }
+
+.cart-action:hover {
+  color: red;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translateX(-50%);
+}

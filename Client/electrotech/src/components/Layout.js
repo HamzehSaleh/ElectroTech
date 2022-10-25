@@ -24,6 +24,7 @@ import AppsIcon from "@material-ui/icons/Apps";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./layout.css";
+import Spinner from "./Spinner";
 
 const drawerWidth = 240;
 
@@ -95,7 +96,7 @@ export default function LayoutApp({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const { cartItems } = useSelector((state) => state.rootReducer);
+  const { cartItems, loading } = useSelector((state) => state.rootReducer);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -134,7 +135,7 @@ export default function LayoutApp({ children }) {
             ElectroTech
           </Typography>
         </Toolbar>
-        <div className="cart-itmes">
+        <div className="cart-itmes" onClick={() => navigate("/cart")}>
           <ShoppingCartOutlinedIcon />
           <span className="cart-badge"> {cartItems.length}</span>
         </div>
@@ -203,7 +204,10 @@ export default function LayoutApp({ children }) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        {loading && <Spinner />}
         {children}
+
+        {/* <Spinner /> */}
       </main>
     </div>
   );

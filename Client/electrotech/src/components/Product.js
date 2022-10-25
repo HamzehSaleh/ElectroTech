@@ -24,7 +24,7 @@ const Product = (props) => {
   return (
     <Card>
       <CardActionArea>
-        <CardMedia component="img" height="140" image={props.product.image} />
+        <CardMedia component="img" height="150" image={props.product.image} />
         <CardContent>
           <Typography variant="h5" component="h2">
             {props.product.name}
