@@ -21,4 +21,20 @@ router.get("/products", async (req, res) => {
   }
 });
 
+router.delete("/products/:id", async (req, res) => {
+  try {
+    const product = await Product.findOneAndDelete({
+      _id: req.params.id,
+    });
+
+    if (!product) {
+      return res.status(404).send();
+    }
+
+    res.send(product);
+  } catch (error) {
+    res.status(500).send();
+  }
+});
+
 module.exports = router;
