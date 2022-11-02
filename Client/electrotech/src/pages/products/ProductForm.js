@@ -8,13 +8,11 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-
 import "./ProductForm.css";
 import axios from "axios";
 
 const ProductForm = (props) => {
   const [showFrom, setShowForm] = useState(false);
-  const [open, setOpen] = useState(false);
 
   let showFormHandler = () => {
     setShowForm((prevState) => {
@@ -42,7 +40,6 @@ const ProductForm = (props) => {
         price: values.price,
         image: "/images/" + fileName[2],
       };
-      // console.log(newProductData);
 
       addDataHandler(newProductData);
       formik.handleReset({ values: "" });
@@ -55,8 +52,6 @@ const ProductForm = (props) => {
       props.onSaveProductData();
     } catch (error) {}
   };
-
-  // console.log(formik.values);
 
   let form = (
     <form onSubmit={formik.handleSubmit} className="new-product-form">

@@ -39,3 +39,7 @@
   display: block !important;
   margin: 0 0 15px auto !important;
 }
+
+.table-actions {
+  display: flex !important;
+}

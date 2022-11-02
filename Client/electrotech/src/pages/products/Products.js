@@ -12,11 +12,11 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Typography } from "@material-ui/core";
 import ProductForm from "./ProductForm";
+import EditModal from "./EditModal";
 
 const columns = [
   {
@@ -60,8 +60,8 @@ const Products = () => {
   const [productData, setProductData] = useState([]);
 
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const getAllProducts = async () => {
     try {
@@ -141,13 +141,16 @@ const Products = () => {
                   </TableCell>
                   <TableCell>${row.price}</TableCell>
                   <TableCell>
-                    <span className="edit-action">
-                      <EditOutlinedIcon />
-                    </span>
-                    <DeleteOutlineIcon
-                      className="cart-action"
-                      onClick={() => handleDeleteProduct(row._id)}
-                    />
+                    <div className="table-actions">
+                      <EditModal
+                        getItem={row._id}
+                        onUpdateProductData={saveProductDataHandler}
+                      />
+                      <DeleteOutlineIcon
+                        className="cart-action"
+                        onClick={() => handleDeleteProduct(row._id)}
+                      />
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
