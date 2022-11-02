@@ -42,7 +42,7 @@ const ProductForm = (props) => {
       };
 
       addDataHandler(newProductData);
-      formik.handleReset({ values: "" });
+      setShowForm(false);
     },
   });
 
@@ -81,7 +81,7 @@ const ProductForm = (props) => {
             onChange={formik.handleChange}
           >
             <option aria-label="None" value="" />
-            <option value="smart phone">Smart Phone</option>
+            <option value="smart phones">Smart Phone</option>
             <option value="laptops">Laptops</option>
             <option value="home applicants">Home Applicants</option>
           </Select>

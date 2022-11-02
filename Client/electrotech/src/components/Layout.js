@@ -178,7 +178,7 @@ export default function LayoutApp({ children }) {
             <ListItemText>Products</ListItemText>
           </ListItem>
 
-          <ListItem key={3} button onClick={() => navigate("/products")}>
+          <ListItem key={3} button onClick={() => navigate("/bills")}>
             <ListItemIcon>
               <LocalAtmOutlinedIcon />
             </ListItemIcon>

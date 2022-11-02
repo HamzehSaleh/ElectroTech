@@ -18,7 +18,7 @@ const Product = (props) => {
   const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
-      payload: props.product,
+      payload: { ...props.product, quantity: 1 },
     });
   };
   return (
@@ -30,7 +30,7 @@ const Product = (props) => {
             {props.product.name}
           </Typography>
           <Typography variant="body2" component="p">
-            {props.product.category}
+            ${props.product.price}
           </Typography>
         </CardContent>
       </CardActionArea>

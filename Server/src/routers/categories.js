@@ -14,8 +14,9 @@ router.post("/categories", async (req, res) => {
 
 router.get("/categories", async (req, res) => {
   try {
-    const categorys = await Category.find({});
-    res.send(categorys);
+    const categories = await Category.find({});
+    // console.log(categories);
+    res.send(categories);
   } catch (e) {
     res.status(500).send;
   }

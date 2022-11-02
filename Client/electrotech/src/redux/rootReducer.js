@@ -28,6 +28,16 @@ export const rootReducer = (state = initalState, action) => {
           return item._id !== action.payload._id;
         }),
       };
+
+    case "UPDATE_CART":
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) =>
+          item._id === action.payload._id
+            ? { ...item, quantity: action.payload.quantity }
+            : item
+        ),
+      };
     default:
       return state;
   }

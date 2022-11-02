@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import TextField from "@material-ui/core/TextField";
 import * as Yup from "yup";
 import { Button } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
 
 function getModalStyle() {
   const top = 50;
@@ -116,14 +117,23 @@ const EditModal = (props) => {
           />
 
           <TextField
-            label="Product Category"
-            id="category"
-            defaultValue={formik.values.category}
+            id="outlined-select-currency"
+            select
+            label="Category"
+            value={formik.values.category}
             onChange={formik.handleChange}
             variant="outlined"
-            size="small"
             className={classes.root}
-          />
+          >
+            <MenuItem value="smart phones"> Smart Phone</MenuItem>
+            <MenuItem value="laptops">Laptops</MenuItem>
+            <MenuItem value="home applicants">Home Applicants</MenuItem>
+            {/* {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))} */}
+          </TextField>
 
           <TextField
             label="Product Price"
