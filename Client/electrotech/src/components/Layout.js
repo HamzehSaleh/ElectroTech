@@ -18,7 +18,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import LocalAtmOutlinedIcon from "@material-ui/icons/LocalAtmOutlined";
-import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
 import AppsIcon from "@material-ui/icons/Apps";
 import { useNavigate } from "react-router-dom";
@@ -183,13 +182,6 @@ export default function LayoutApp({ children }) {
               <LocalAtmOutlinedIcon />
             </ListItemIcon>
             <ListItemText>Bills</ListItemText>
-          </ListItem>
-
-          <ListItem key={4} button onClick={() => navigate("/products")}>
-            <ListItemIcon>
-              <PeopleAltOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText>Customers</ListItemText>
           </ListItem>
         </List>
         <Divider />

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import LayoutApp from "../../components/Layout";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -12,9 +11,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import { Typography } from "@material-ui/core";
+import { TextField, Typography } from "@material-ui/core";
 import ProductForm from "./ProductForm";
 import EditModal from "./EditModal";
 
@@ -58,7 +56,7 @@ const useStyles = makeStyles({
 const Products = () => {
   const dispatch = useDispatch();
   const [productData, setProductData] = useState([]);
-
+  const [query, setQuery] = useState("");
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -105,6 +103,17 @@ const Products = () => {
       type: "SHOW_LOADING",
     });
     getAllProducts();
+  };
+
+  const handleSearch = (event) => {
+    let filltered = productData.filter((item) =>
+      item.name.includes(event.target.value)
+    );
+
+    setProductData(filltered);
+    if (event.target.value === "") {
+      getAllProducts();
+    }
   };
 
   return (
@@ -154,6 +163,9 @@ const Products = () => {
                   </TableCell>
                 </TableRow>
               ))}
+              <div className="search-div">
+                <TextField placeholder="Search... " onChange={handleSearch} />
+              </div>
             </TableBody>
           </Table>
         </TableContainer>
